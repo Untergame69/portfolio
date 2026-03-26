@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 
 export default function ExperiencePage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 px-4 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-24 pb-20 px-4" style={{ background: "var(--bg-primary)" }}>
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">Expériences</h1>
-          <p className="text-gray-500 dark:text-gray-400">
+          <h1 className="text-4xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Expériences</h1>
+          <p style={{ color: "var(--text-secondary)" }}>
             3 ans d&apos;expérience en Cloud, DevOps et infrastructure — du terrain à l&apos;architecture.
           </p>
         </div>

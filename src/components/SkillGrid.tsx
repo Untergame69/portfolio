@@ -8,35 +8,58 @@ const iconMap: Record<string, React.ElementType> = {
   Cloud, GitBranch, Container, Code, Server, Monitor, Activity, Network, Phone,
 };
 
-interface SkillGridProps {
-  categories: SkillCategory[];
-}
+const iconColors: Record<string, string> = {
+  Cloud: "#f59e0b",
+  GitBranch: "#6366f1",
+  Container: "#22d3ee",
+  Code: "#10b981",
+  Server: "#8b5cf6",
+  Monitor: "#f97316",
+  Activity: "#ef4444",
+  Network: "#06b6d4",
+  Phone: "#84cc16",
+};
 
-export default function SkillGrid({ categories }: SkillGridProps) {
+export default function SkillGrid({ categories }: { categories: SkillCategory[] }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {categories.map((cat, i) => {
         const Icon = iconMap[cat.icon] || Server;
+        const color = iconColors[cat.icon] || "#6366f1";
         return (
           <motion.div
             key={cat.name}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.07 }}
-            className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:border-blue-500/50 dark:hover:border-blue-400/50 transition-all"
+            transition={{ delay: i * 0.06 }}
+            className="rounded-xl p-4 transition-all"
+            style={{
+              background: "var(--bg-card)",
+              border: "1px solid var(--border-color)",
+            }}
           >
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
-                <Icon className="w-4 h-4 text-blue-500" />
+              <div
+                className="p-2 rounded-lg"
+                style={{ background: color + "18", border: `1px solid ${color}30` }}
+              >
+                <Icon className="w-4 h-4" style={{ color }} />
               </div>
-              <h3 className="font-semibold text-sm text-gray-900 dark:text-white">{cat.name}</h3>
+              <h3 className="font-semibold text-sm" style={{ color: "var(--text-primary)" }}>
+                {cat.name}
+              </h3>
             </div>
             <div className="flex flex-wrap gap-1.5">
               {cat.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="px-2 py-0.5 text-xs rounded-md bg-gray-50 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600"
+                  className="px-2 py-0.5 text-xs rounded-md"
+                  style={{
+                    background: "var(--bg-hover)",
+                    color: "var(--text-secondary)",
+                    border: "1px solid var(--border-color)",
+                  }}
                 >
                   {skill}
                 </span>

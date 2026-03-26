@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 
 export default function SkillsPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 px-4 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-24 pb-20 px-4" style={{ background: "var(--bg-primary)" }}>
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">Compétences</h1>
-          <p className="text-gray-500 dark:text-gray-400">
+          <h1 className="text-4xl font-bold mb-3" style={{ color: "var(--text-primary)" }}>Compétences</h1>
+          <p style={{ color: "var(--text-secondary)" }}>
             Stack technique couvrant l&apos;ensemble de la chaîne DevOps et Cloud.
           </p>
         </div>

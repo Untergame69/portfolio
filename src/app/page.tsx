@@ -1,75 +1,112 @@
-import Hero from "@/components/Hero";
-import ProjectCard from "@/components/ProjectCard";
-import SkillGrid from "@/components/SkillGrid";
-import { projects } from "@/data/projects";
-import { skillCategories } from "@/data/skills";
+"use client";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { GraduationCap, Briefcase, ArrowRight, MapPin } from "lucide-react";
 
 export default function Home() {
   return (
-    <div>
-      <Hero />
-
-      {/* Projects preview */}
-      <section className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-10">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Projets</h2>
-              <p className="text-gray-500 dark:text-gray-400 mt-1">Infrastructure & automatisation</p>
-            </div>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-1.5 text-sm text-blue-500 hover:text-blue-600 font-medium"
-            >
-              Tous les projets <ArrowRight className="w-4 h-4" />
-            </Link>
+    <div className="min-h-screen flex items-center justify-center px-4 pt-16">
+      <div className="max-w-2xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {/* Name */}
+          <div className="mb-2 text-sm font-medium uppercase tracking-widest" style={{ color: "var(--text-secondary)" }}>
+            Portfolio
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.title} project={project} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills preview */}
-      <section className="py-20 px-4 bg-white dark:bg-gray-800/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-10">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Compétences</h2>
-              <p className="text-gray-500 dark:text-gray-400 mt-1">Stack technique maîtrisée</p>
-            </div>
-            <Link
-              href="/skills"
-              className="inline-flex items-center gap-1.5 text-sm text-blue-500 hover:text-blue-600 font-medium"
-            >
-              Voir tout <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-          <SkillGrid categories={skillCategories} />
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Travaillons ensemble
-          </h2>
-          <p className="text-gray-500 dark:text-gray-400 mb-8">
-            Disponible pour une alternance DevOps / Admin Sys (sept. 2026) ou un CDI/CDD immédiat à Lyon / Toulouse.
+          <h1 className="text-4xl sm:text-5xl font-bold mb-2" style={{ color: "var(--text-primary)" }}>
+            Sébastien <span style={{ color: "#6366f1" }}>Marle</span>
+          </h1>
+          <p className="text-lg mb-10" style={{ color: "var(--text-secondary)" }}>
+            Ingénieur Cloud &amp; DevOps — Lyon
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-xl transition-colors"
-          >
-            Me contacter <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
+
+          {/* Mode selection */}
+          <p className="text-sm mb-6" style={{ color: "var(--text-secondary)" }}>
+            Vous cherchez&nbsp;:
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Alternance card */}
+            <Link href="/hire/alternance-2026" className="group block">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="rounded-2xl p-6 text-left transition-all"
+                style={{
+                  background: "var(--bg-card)",
+                  border: "1px solid var(--border-color)",
+                }}
+              >
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                  style={{ background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)" }}
+                >
+                  <GraduationCap className="w-5 h-5 text-emerald-400" />
+                </div>
+                <h2 className="font-bold text-base mb-1" style={{ color: "var(--text-primary)" }}>
+                  Un alternant
+                </h2>
+                <p className="text-xs mb-3" style={{ color: "var(--text-secondary)" }}>
+                  Alternance 24 mois — Septembre 2026
+                </p>
+                <div className="flex items-center gap-1.5 text-xs" style={{ color: "var(--text-secondary)" }}>
+                  <MapPin className="w-3 h-3" />
+                  Lyon · Toulouse · Paris · Strasbourg
+                </div>
+                <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-emerald-400 group-hover:gap-2.5 transition-all">
+                  Voir le profil alternance <ArrowRight className="w-3 h-3" />
+                </div>
+              </motion.div>
+            </Link>
+
+            {/* CDI card */}
+            <Link href="/hire/available-now" className="group block">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="rounded-2xl p-6 text-left transition-all"
+                style={{
+                  background: "var(--bg-card)",
+                  border: "1px solid var(--border-color)",
+                }}
+              >
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                  style={{ background: "rgba(99,102,241,0.15)", border: "1px solid rgba(99,102,241,0.3)" }}
+                >
+                  <Briefcase className="w-5 h-5" style={{ color: "#818cf8" }} />
+                </div>
+                <h2 className="font-bold text-base mb-1" style={{ color: "var(--text-primary)" }}>
+                  Un collaborateur CDI/CDD
+                </h2>
+                <p className="text-xs mb-3" style={{ color: "var(--text-secondary)" }}>
+                  Disponible immédiatement
+                </p>
+                <div className="flex items-center gap-1.5 text-xs" style={{ color: "var(--text-secondary)" }}>
+                  <MapPin className="w-3 h-3" />
+                  Lyon · Toulouse
+                </div>
+                <div className="mt-4 flex items-center gap-1.5 text-xs font-medium group-hover:gap-2.5 transition-all" style={{ color: "#818cf8" }}>
+                  Voir le profil CDI/CDD <ArrowRight className="w-3 h-3" />
+                </div>
+              </motion.div>
+            </Link>
+          </div>
+
+          <p className="mt-8 text-xs" style={{ color: "var(--text-secondary)" }}>
+            Ou explorez directement :{" "}
+            <Link href="/projects" className="underline underline-offset-2 hover:opacity-80" style={{ color: "#6366f1" }}>projets</Link>
+            {" · "}
+            <Link href="/experience" className="underline underline-offset-2 hover:opacity-80" style={{ color: "#6366f1" }}>expériences</Link>
+            {" · "}
+            <Link href="/skills" className="underline underline-offset-2 hover:opacity-80" style={{ color: "#6366f1" }}>compétences</Link>
+          </p>
+        </motion.div>
+      </div>
     </div>
   );
 }

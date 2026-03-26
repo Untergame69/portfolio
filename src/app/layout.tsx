@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import StarField from "@/components/StarField";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning>
-      <body className={`${inter.className} bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white`}>
+    <html lang="fr" className="dark" suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen`} style={{ background: "var(--bg-primary)", color: "var(--text-primary)" }}>
         <ThemeProvider>
+          <StarField />
           <Navbar />
           <main>{children}</main>
           <Footer />
